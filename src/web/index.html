@@ -1,0 +1,671 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Christopher Logan - Software Engineer & Architect</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary: #2563eb;
+            --secondary: #1e40af;
+            --accent: #3b82f6;
+            --dark: #0f172a;
+            --light: #f8fafc;
+            --gray: #64748b;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            line-height: 1.6;
+            color: var(--dark);
+            background: var(--light);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        header {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+            color: white;
+            padding: 80px 20px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg width="100" height="100" xmlns="http://www.w3.org/2000/svg"><defs><pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse"><path d="M 40 0 L 0 0 0 40" fill="none" stroke="rgba(255,255,255,0.1)" stroke-width="1"/></pattern></defs><rect width="100" height="100" fill="url(%23grid)"/></svg>');
+            opacity: 0.3;
+        }
+
+        header .content {
+            position: relative;
+            z-index: 1;
+        }
+
+        h1 {
+            font-size: 3rem;
+            margin-bottom: 10px;
+            font-weight: 700;
+        }
+
+        .tagline {
+            font-size: 1.3rem;
+            opacity: 0.95;
+            margin-bottom: 30px;
+        }
+
+        .contact-links {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .contact-links a {
+            color: white;
+            text-decoration: none;
+            padding: 10px 20px;
+            border: 2px solid rgba(255,255,255,0.3);
+            border-radius: 25px;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(10px);
+        }
+
+        .contact-links a:hover {
+            background: rgba(255,255,255,0.2);
+            border-color: white;
+            transform: translateY(-2px);
+        }
+
+        nav {
+            background: white;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            padding: 20px;
+            gap: 10px;
+        }
+
+        nav a {
+            color: var(--dark);
+            text-decoration: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            transition: all 0.3s ease;
+            font-weight: 500;
+        }
+
+        nav a:hover {
+            background: var(--primary);
+            color: white;
+        }
+
+        section {
+            padding: 60px 20px;
+        }
+
+        section:nth-child(even) {
+            background: white;
+        }
+
+        h2 {
+            font-size: 2.5rem;
+            margin-bottom: 40px;
+            text-align: center;
+            color: var(--secondary);
+            position: relative;
+            padding-bottom: 15px;
+        }
+
+        h2::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 60px;
+            height: 4px;
+            background: var(--primary);
+            border-radius: 2px;
+        }
+
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+
+        .skill-category {
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        section:nth-child(even) .skill-category {
+            background: var(--light);
+        }
+
+        .skill-category:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 15px rgba(0,0,0,0.15);
+        }
+
+        .skill-category h3 {
+            color: var(--primary);
+            margin-bottom: 15px;
+            font-size: 1.3rem;
+        }
+
+        .skill-category ul {
+            list-style: none;
+        }
+
+        .skill-category li {
+            padding: 8px 0;
+            color: var(--gray);
+            position: relative;
+            padding-left: 20px;
+        }
+
+        .skill-category li::before {
+            content: '▹';
+            position: absolute;
+            left: 0;
+            color: var(--primary);
+            font-weight: bold;
+        }
+
+        .experience-timeline {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .experience-item {
+            background: white;
+            padding: 30px;
+            margin-bottom: 30px;
+            border-radius: 10px;
+            border-left: 4px solid var(--primary);
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease;
+        }
+
+        section:nth-child(even) .experience-item {
+            background: var(--light);
+        }
+
+        .experience-item:hover {
+            transform: translateX(5px);
+        }
+
+        .experience-item h3 {
+            color: var(--secondary);
+            font-size: 1.5rem;
+            margin-bottom: 5px;
+        }
+
+        .experience-item .company {
+            color: var(--primary);
+            font-weight: 600;
+            margin-bottom: 5px;
+        }
+
+        .experience-item .date {
+            color: var(--gray);
+            font-size: 0.9rem;
+            margin-bottom: 15px;
+        }
+
+        .experience-item ul {
+            margin-top: 15px;
+        }
+
+        .experience-item li {
+            margin-bottom: 10px;
+            color: var(--gray);
+        }
+
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .project-card {
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        section:nth-child(even) .project-card {
+            background: var(--light);
+        }
+
+        .project-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 15px rgba(0,0,0,0.15);
+        }
+
+        .project-card .project-header {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--accent) 100%);
+            color: white;
+            padding: 30px;
+            text-align: center;
+        }
+
+        .project-card h3 {
+            font-size: 1.4rem;
+            margin-bottom: 10px;
+        }
+
+        .project-card .project-body {
+            padding: 25px;
+        }
+
+        .project-card .tech-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-top: 15px;
+        }
+
+        .tech-tag {
+            background: var(--light);
+            padding: 5px 12px;
+            border-radius: 15px;
+            font-size: 0.85rem;
+            color: var(--primary);
+            border: 1px solid var(--primary);
+        }
+
+        section:nth-child(even) .tech-tag {
+            background: white;
+        }
+
+        footer {
+            background: var(--dark);
+            color: white;
+            text-align: center;
+            padding: 40px 20px;
+        }
+
+        footer p {
+            opacity: 0.8;
+        }
+
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2rem;
+            }
+
+            .tagline {
+                font-size: 1.1rem;
+            }
+
+            h2 {
+                font-size: 2rem;
+            }
+
+            nav ul {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .skills-grid, .projects-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="content">
+            <h1>Christopher Mikal Logan</h1>
+            <p class="tagline">Software Engineer & Architect | AI/ML Specialist | Healthcare Tech Expert</p>
+            <div class="contact-links">
+                <a href="tel:347-583-1419">📞 347-583-1419</a>
+                <a href="mailto:chrismikall@gmail.com">✉️ Email</a>
+                <a href="https://linkedin.com/in/chrismikall" target="_blank">💼 LinkedIn</a>
+            </div>
+        </div>
+    </header>
+
+    <nav>
+        <ul>
+            <li><a href="#about">About</a></li>
+            <li><a href="#skills">Skills</a></li>
+            <li><a href="#experience">Experience</a></li>
+            <li><a href="#projects">Projects</a></li>
+            <li><a href="#education">Education</a></li>
+        </ul>
+    </nav>
+
+    <section id="about">
+        <div class="container">
+            <h2>About Me</h2>
+            <div style="max-width: 800px; margin: 0 auto; font-size: 1.1rem; color: var(--gray); text-align: center;">
+                <p>Seasoned Software Engineer and Architect with 25+ years of expertise in Artificial Intelligence, Neural Network architecture, and Machine Learning. Proven track record in leading projects, managing cross-functional teams, and scaling complex systems. Strong background in finance, government contracts, healthcare technology, and intellectual property.</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="skills">
+        <div class="container">
+            <h2>Core Competencies</h2>
+            <div class="skills-grid">
+                <div class="skill-category">
+                    <h3>Leadership & Strategy</h3>
+                    <ul>
+                        <li>CTO-level Advisory</li>
+                        <li>Team Leadership</li>
+                        <li>Client/Vendor Relations</li>
+                        <li>Project Management</li>
+                    </ul>
+                </div>
+                <div class="skill-category">
+                    <h3>AI/ML Engineering</h3>
+                    <ul>
+                        <li>GenAI & LLMs</li>
+                        <li>RAG Agents</li>
+                        <li>PyTorch & TensorFlow</li>
+                        <li>Neural Network Design</li>
+                        <li>OCR Systems</li>
+                    </ul>
+                </div>
+                <div class="skill-category">
+                    <h3>Frontend Development</h3>
+                    <ul>
+                        <li>Angular & React</li>
+                        <li>TypeScript & JavaScript</li>
+                        <li>HTML5 & CSS3</li>
+                        <li>D3.js Visualizations</li>
+                        <li>Responsive Design</li>
+                    </ul>
+                </div>
+                <div class="skill-category">
+                    <h3>Backend & Architecture</h3>
+                    <ul>
+                        <li>.NET Core & C#</li>
+                        <li>Java & Spring Boot</li>
+                        <li>Python</li>
+                        <li>Microservices & REST APIs</li>
+                        <li>Event-Driven Architecture</li>
+                    </ul>
+                </div>
+                <div class="skill-category">
+                    <h3>Cloud & DevOps</h3>
+                    <ul>
+                        <li>AWS (Lambda, EC2, S3)</li>
+                        <li>Docker & Containers</li>
+                        <li>CI/CD Pipelines</li>
+                        <li>Jenkins & GitHub Actions</li>
+                        <li>Infrastructure as Code</li>
+                    </ul>
+                </div>
+                <div class="skill-category">
+                    <h3>Databases</h3>
+                    <ul>
+                        <li>PostgreSQL & MySQL</li>
+                        <li>Oracle & DB2</li>
+                        <li>DynamoDB</li>
+                        <li>SQL Server</li>
+                        <li>Database Optimization</li>
+                    </ul>
+                </div>
+                <div class="skill-category">
+                    <h3>Healthcare & Compliance</h3>
+                    <ul>
+                        <li>FDA Compliance</li>
+                        <li>HIPAA Standards</li>
+                        <li>Medical Device Development</li>
+                        <li>IoT Systems</li>
+                        <li>Real-time Data Acquisition</li>
+                    </ul>
+                </div>
+                <div class="skill-category">
+                    <h3>Finance & Payments</h3>
+                    <ul>
+                        <li>ACH/NACHA Processing</li>
+                        <li>Real-time Risk Systems</li>
+                        <li>Trading Platforms</li>
+                        <li>Payment Gateways</li>
+                        <li>SOX Compliance</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="experience">
+        <div class="container">
+            <h2>Professional Experience</h2>
+            <div class="experience-timeline">
+                <div class="experience-item">
+                    <h3>Sr. Software Engineer - Medical Devices</h3>
+                    <div class="company">Burleon Tech</div>
+                    <div class="date">2021 - Present</div>
+                    <ul>
+                        <li>Enhancing medical devices with AI capabilities and neural network integration</li>
+                        <li>Designing user interfaces for ARM-based embedded systems with RISC architecture</li>
+                        <li>Implementing real-time data acquisition using Python and IoT technologies</li>
+                        <li>Managing regulatory compliance (FDA) and patent filing processes</li>
+                        <li>Working with GPIO pins for sensors, LEDs, and motor control systems</li>
+                    </ul>
+                </div>
+
+                <div class="experience-item">
+                    <h3>Founder / Lead Developer</h3>
+                    <div class="company">Worlwin LLC</div>
+                    <div class="date">2009 - Present</div>
+                    <ul>
+                        <li>Developed restaurant chain Order Chatbot with LLM+RAG menu system using React, Python, and Stripe integration</li>
+                        <li>Built Kitchen Display System (KDS) for seamless order fulfillment and payment processing</li>
+                        <li>Created LLM with RAG journal application using Ollama and OpenAI models for AI-powered data analysis</li>
+                        <li>Developed AI fixed income signal indicator in C++ for financial trading</li>
+                        <li>Led development for NYC DoITT's IT management system for data center visualization and inventory</li>
+                        <li>Built NYASH Health platform for medical research, healthcare job search, and facility profiles</li>
+                        <li>Implemented NACHA/ACH file processing for secure automated bank transactions</li>
+                        <li>Created D3.js-based data visualization tools with Angular for complex datasets</li>
+                        <li>Managed USPTO trademark registrations and intellectual property protection</li>
+                        <li>Provided fractional C-level leadership and architecture services to startups</li>
+                    </ul>
+                </div>
+
+                <div class="experience-item">
+                    <h3>Application Manager, Sr. Principal Developer, Sr. Vice President</h3>
+                    <div class="company">Bank of New York Mellon Corporation</div>
+                    <div class="date">2001 - 2025</div>
+                    <ul>
+                        <li>Led NEXEN frontend migration for fintech platform serving data analytics, web applications, and APIs</li>
+                        <li>Managed Alternative Investments platform development for internal and external utilization</li>
+                        <li>Reduced firm-wide reporting system batch load times by 93% (from 8-16 hours to 1 sec-2 hrs)</li>
+                        <li>Migrated 100+ white-label apps to Akamai CDN, offloading 95-99% of traffic from internal servers</li>
+                        <li>Spearheaded Generative AI initiatives using RAG for domain-specific queries and CoPilot integration</li>
+                        <li>Built centralized Content Delivery Platform with automated CI/CD pipelines using Jenkins and GitHub</li>
+                        <li>Led mobile portal infrastructure development for iOS and Android with security and app store management</li>
+                        <li>Created Enterprise Web Services with SOAP connecting legacy systems to distributed architecture</li>
+                        <li>Applied WebLogic Portal, Spring Boot, Angular, Oracle DB, and comprehensive DevOps practices</li>
+                        <li>Managed teams from 5 resources to large cross-functional groups and vendor relationships</li>
+                    </ul>
+                </div>
+
+                <div class="experience-item">
+                    <h3>Software Engineer - Optics</h3>
+                    <div class="company">Raytheon Systems Company (RSC)</div>
+                    <div class="date">1997 - 2001</div>
+                    <ul>
+                        <li>Ported puvng package from VMS FORTRAN to DEV Visual FORTRAN</li>
+                        <li>Created masks for lens fabrication using GDSII Format and L-Edit</li>
+                        <li>Conducted Hubble Space Telescope (HST/NHST) data analysis</li>
+                        <li>Led software development for Adaptive Optic (AO) projects maintaining 500k+ lines of code</li>
+                        <li>Developed network communication products connecting servers to RTOS (VxWorks) on Solaris</li>
+                        <li>Automated code builds with shell scripts and makefiles in UNIX environment</li>
+                    </ul>
+                </div>
+
+                <div class="experience-item">
+                    <h3>Member of Technical Staff</h3>
+                    <div class="company">Technology Service Corporation (TSC)</div>
+                    <div class="date">1994 - 1997</div>
+                    <ul>
+                        <li>Performed sensor analysis using C++, Matlab, and modeling software</li>
+                        <li>Ported Radar Imagery Generator (RIG) from VAX/VMS to SUN/Solaris</li>
+                        <li>Developed GUI applications and analysis tools for database visualization</li>
+                        <li>Constructed model databases for sensor analysis using USGS data</li>
+                        <li>Wrote technical documentation and user manuals for deliverable software</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="projects">
+        <div class="container">
+            <h2>Featured Projects</h2>
+            <div class="projects-grid">
+                <div class="project-card">
+                    <div class="project-header">
+                        <h3>🤖 Restaurant Order Chatbot & KDS</h3>
+                    </div>
+                    <div class="project-body">
+                        <p>AI-powered ordering system with LLM+RAG menu integration, payment processing via Stripe, and kitchen display system for seamless order fulfillment.</p>
+                        <div class="tech-tags">
+                            <span class="tech-tag">React</span>
+                            <span class="tech-tag">Python</span>
+                            <span class="tech-tag">LLM/RAG</span>
+                            <span class="tech-tag">Stripe</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="project-card">
+                    <div class="project-header">
+                        <h3>📊 NEXEN Fintech Platform</h3>
+                    </div>
+                    <div class="project-body">
+                        <p>Complete frontend migration of enterprise fintech platform providing data analytics, web applications, and APIs for banking services.</p>
+                        <div class="tech-tags">
+                            <span class="tech-tag">Angular</span>
+                            <span class="tech-tag">TypeScript</span>
+                            <span class="tech-tag">REST APIs</span>
+                            <span class="tech-tag">AWS</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="project-card">
+                    <div class="project-header">
+                        <h3>🏥 AI Medical Device</h3>
+                    </div>
+                    <div class="project-body">
+                        <p>Enhanced embedded medical device with AI capabilities, real-time data acquisition, and FDA-compliant architecture for healthcare applications.</p>
+                        <div class="tech-tags">
+                            <span class="tech-tag">Python</span>
+                            <span class="tech-tag">ARM/RISC</span>
+                            <span class="tech-tag">IoT</span>
+                            <span class="tech-tag">FDA Compliance</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="project-card">
+                    <div class="project-header">
+                        <h3>📝 LLM Journal with RAG</h3>
+                    </div>
+                    <div class="project-body">
+                        <p>AI agent for analyzing daily journals and personal data using Ollama and OpenAI models with Retrieval-Augmented Generation.</p>
+                        <div class="tech-tags">
+                            <span class="tech-tag">Python</span>
+                            <span class="tech-tag">Ollama</span>
+                            <span class="tech-tag">OpenAI</span>
+                            <span class="tech-tag">RAG</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="project-card">
+                    <div class="project-header">
+                        <h3>🌐 CDN Migration Platform</h3>
+                    </div>
+                    <div class="project-body">
+                        <p>Migrated 100+ white-label applications to Akamai CDN, reducing server load by 95-99% with automated CI/CD deployment pipelines.</p>
+                        <div class="tech-tags">
+                            <span class="tech-tag">AWS</span>
+                            <span class="tech-tag">Akamai</span>
+                            <span class="tech-tag">Jenkins</span>
+                            <span class="tech-tag">CI/CD</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="project-card">
+                    <div class="project-header">
+                        <h3>⚡ Enterprise Reporting System</h3>
+                    </div>
+                    <div class="project-body">
+                        <p>Redesigned firm-wide reporting system reducing batch processing time by 93%, from 8-16 hours down to 1 second-2 hours.</p>
+                        <div class="tech-tags">
+                            <span class="tech-tag">Oracle</span>
+                            <span class="tech-tag">PL/SQL</span>
+                            <span class="tech-tag">Java</span>
+                            <span class="tech-tag">Spring Boot</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="education">
+        <div class="container">
+            <h2>Education</h2>
+            <div class="experience-timeline">
+                <div class="experience-item">
+                    <h3>Master of Science - Computer Science</h3>
+                    <div class="company">Pace University</div>
+                </div>
+                <div class="experience-item">
+                    <h3>Bachelor of Science - Computer Science</h3>
+                    <div class="company">Andrews University</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2024 Christopher Mikal Logan. All rights reserved.</p>
+            <p style="margin-top: 10px;">Built with passion for creating innovative solutions</p>
+        </div>
+    </footer>
+</body>
+</html>
